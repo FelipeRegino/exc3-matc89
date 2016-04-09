@@ -1,5 +1,6 @@
 package trabalho.exercicio3;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,9 +33,10 @@ public class tela2 extends AppCompatActivity {
             public void onClick(View v) {
                 String text2 = editText2.getText().toString();
 
-                Intent intent = new Intent(tela2.this, MainActivity.class);
+                Intent intent = new Intent();
                 intent.putExtra("text2", text2);
-                startActivity(intent);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
         Bundle envio = getIntent().getExtras();

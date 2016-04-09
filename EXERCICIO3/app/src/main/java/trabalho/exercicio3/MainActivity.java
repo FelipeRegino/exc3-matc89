@@ -1,5 +1,6 @@
 package trabalho.exercicio3;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -39,17 +40,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, tela2.class);
                 intent.putExtra("text1", text1);
                 intent.putExtra("envio1", true);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }
 
     @Override
-    protected void onRestart() {
-        Bundle extras = getIntent().getExtras();
-        String txt2 = extras.getString("text2");
-        textView.setText(txt2);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        super.onRestart();
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("text2");
+                textView.setText(result);
+            }
+
+        }
     }
 }
